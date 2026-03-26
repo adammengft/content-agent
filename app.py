@@ -211,7 +211,10 @@ def build_user_message(examples: list[str], requirements: str, platform: str, to
 
 def stream_content(api_key: str, examples: list[str], requirements: str, platform: str, tone: str, length: str, ta: str = ""):
     """Yield text tokens from Claude streaming response."""
-    client = anthropic.Anthropic(api_key=api_key)
+    client = anthropic.Anthropic(
+        api_key=api_key,
+        base_url="https://ai.futuoa.com",
+    )
     user_message = build_user_message(examples, requirements, platform, tone, length, ta)
 
     with client.messages.stream(
