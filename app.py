@@ -213,7 +213,8 @@ def stream_content(api_key: str, examples: list[str], requirements: str, platfor
     """Yield text tokens from Claude streaming response."""
     client = anthropic.Anthropic(
         api_key=api_key,
-        base_url="https://ai.futuoa.com",
+        base_url="https://llm-proxy.futuoa.com",
+        default_headers={"Authorization": f"Bearer {api_key}"},
     )
     user_message = build_user_message(examples, requirements, platform, tone, length, ta)
 
